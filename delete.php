@@ -27,4 +27,5 @@ if (isset($_POST['go'])) {
         unlink($file['pathfile']);
     }
     $mysqli->query("DELETE FROM `schedule` WHERE faculty = " . $fac . "");
+    header("Location: " . $_SERVER['HTTP_REFERER']);
 }
