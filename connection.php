@@ -1,6 +1,6 @@
 <?php 
 
 
-$mysqli = new mysqli("localhost", "root", "root", "database");
+$mysqli = new mysqli("localhost", "root", "", "database");
 
 ?>

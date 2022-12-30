@@ -17,21 +17,25 @@ class Schedule
 
     public function save()
     {
-        $mysqli = new mysqli("localhost", "root", "root", "database");
+        $mysqli = new mysqli("localhost", "root", "", "database");
         move_uploaded_file($this->path, "uploads/$this->title");
         $mysqli->query("INSERT INTO `" . get_class($this) . "`(`title`, `faculty`, `pathfile`) VALUES ('" . $this->title . "','" . $this->faculty . "','uploads/" . $this->title . "')");
     }
 
     public function all()
     {
-        $mysqli = new mysqli("localhost", "root", "root", "database");
+        $mysqli = new mysqli("localhost", "root", "", "database");
         return $mysqli->query("SELECT * FROM `" . get_class($this) . "`")->fetch_all(MYSQLI_ASSOC);
     }
 
     public function destroy($id)
     {
-        $mysqli = new mysqli("localhost", "root", "root", "database");
-        return $mysqli->query("DELETE FROM `" . get_class($this) . "` WHERE `" . get_class($this) . "`.`id` = $id");
+        $mysqli = new mysqli("localhost", "root", "", "database");
+        $qb = new QueryBuilder();
+        $sql = $qb->select(['*'])->from(['schedule'])->where(["id = $id"])->get();
+        $result = $mysqli->query($sql)->fetch_assoc();
+        unlink($result['pathfile']);
+        $mysqli->query("DELETE FROM `" . get_class($this) . "` WHERE `" . get_class($this) . "`.`id` = $id");
         
     }
 

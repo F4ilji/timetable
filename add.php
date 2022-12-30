@@ -13,7 +13,6 @@ if (isset($_POST['go'])) {
     } else {
         $timetable = new Timetable($_POST['fa'], $_FILES['file']);
         $files = $timetable->normalizeArray();
-        $files = $timetable->sortingArray($files);
         foreach ($files as $file) {
             $schedule = new Schedule($file['name'], $_POST['fa'], $file['tmp_name']);
             $schedule->save();

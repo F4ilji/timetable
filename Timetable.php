@@ -38,7 +38,7 @@ class Timetable extends Model
 
     public function all(): Timetable
     {
-        $mysqli = new mysqli("localhost", "root", "root", "database");
+        $mysqli = new mysqli("localhost", "root", "", "database");
         $this->files = $mysqli->query("SELECT * FROM `Schedule`")->fetch_all(MYSQLI_ASSOC);
         return $this;     
     }
