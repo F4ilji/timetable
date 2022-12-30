@@ -28,5 +28,12 @@ class Schedule
         return $mysqli->query("SELECT * FROM `" . get_class($this) . "`")->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function destroy($id)
+    {
+        $mysqli = new mysqli("localhost", "root", "root", "database");
+        return $mysqli->query("DELETE FROM `" . get_class($this) . "` WHERE `" . get_class($this) . "`.`id` = $id");
+        
+    }
+
     
 }

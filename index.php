@@ -20,7 +20,7 @@ $qb = new QueryBuilder();
             <input type="file" id="file" name="file[]" multiple>
             <br>
         </div>
-        
+
         <select name="fa" class="form-select mt-3 w-25" aria-label="Default select example">
             <option value="1">СГФ</option>
             <option value="2">ФППО</option>
@@ -64,7 +64,9 @@ $qb = new QueryBuilder();
 
                         $result = $mysqli->query($sql)->fetch_all(MYSQLI_ASSOC);
                         foreach ($result as $file) { ?>
-                            <td><a href="<?= $file['pathfile'] ?>"><?= stristr($file['title'], ".", true) ?></a></td>
+                            <td><a href="<?= $file['pathfile'] ?>"><?= stristr($file['title'], ".", true) ?></a>
+                                <form method="post" style="margin-left: 5px;" action="delete.php"><button name="once" value="<?= $file['id'] ?>" class="btn btn-outline-danger btn-sm">Удалить</button></form>
+                            </td>
                         <?php } ?>
                     </tr>
 
@@ -80,6 +82,7 @@ $qb = new QueryBuilder();
 
         td,
         th {
+            display: flex;
             align-self: center;
         }
 
