@@ -1,0 +1,85 @@
+    <div class="row">
+        <table class="table col-12 mx-auto table-borderless">
+
+            <tbody class="d-flex justify-content-around">
+                <tr>
+                    <th scope="row">СГФ</th>
+                    <?php
+                    $sql = $qb->select(['*'])->from(['schedule'])->where(['faculty = 1'])->get();
+                    
+                    $result = $mysqli->query($sql)->fetch_all(MYSQLI_ASSOC);
+                    foreach ($result as $file) { ?>
+                        <td><a href="<?= $file['pathfile'] ?>"><?= stristr($file['title'], ".", true) ?></a></td>
+                    <?php } ?>
+                </tr>
+                <tr>
+                    <th scope="row">ФППО</th>
+                    <?php
+                    $sql = $qb->select(['*'])->from(['schedule'])->where(['faculty = 2'])->get();
+                    $result = $mysqli->query($sql)->fetch_all(MYSQLI_ASSOC);
+                    foreach ($result as $file) { ?>
+                        <td><a href="<?= $file['pathfile'] ?>"><?= stristr($file['title'], ".", true) ?></a></td>
+                    <?php } ?>
+                </tr>
+                <tr>
+                    <th scope="row">ФФМК</th>
+                    <?php
+                    $sql = $qb->select(['*'])->from(['schedule'])->where(['faculty = 3'])->get();
+                    $result = $mysqli->query($sql)->fetch_all(MYSQLI_ASSOC);
+                    foreach ($result as $file) { ?>
+                        <td><a href="<?= $file['pathfile'] ?>"><?= stristr($file['title'], ".", true) ?></a></td>
+                    <?php } ?>
+                </tr>
+                <tr>
+                    <th scope="row">ФЕМИ</th>
+                    <?php
+                    $sql = $qb->select(['*'])->from(['schedule'])->where(['faculty = 4'])->get();
+                    $result = $mysqli->query($sql)->fetch_all(MYSQLI_ASSOC);
+                    foreach ($result as $file) { ?>
+                        <td><a href="<?= $file['pathfile'] ?>"><?= stristr($file['title'], ".", true) ?></a></td>
+                    <?php } ?>
+                </tr>
+                <tr>
+                    <th scope="row">ФХО</th>
+                    <?php
+                    $sql = $qb->select(['*'])->from(['schedule'])->where(['faculty = 5'])->get();
+                    $result = $mysqli->query($sql)->fetch_all(MYSQLI_ASSOC);
+                    foreach ($result as $file) { ?>
+                        <td><a href="<?= $file['pathfile'] ?>"><?= stristr($file['title'], ".", true) ?></a></td>
+                    <?php } ?>
+                </tr>
+                <tr>
+                    <th scope="row">ФСБЖ</th>
+                    <?php
+                    $sql = $qb->select(['*'])->from(['schedule'])->where(['faculty = 6'])->get();
+                    $result = $mysqli->query($sql)->fetch_all(MYSQLI_ASSOC);
+                    foreach ($result as $file) { ?>
+                        <td><a href="<?= $file['pathfile'] ?>"><?= stristr($file['title'], ".", true) ?></a></td>
+                    <?php } ?>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <style>
+        td,
+        th {
+            align-self: center;
+        }
+
+
+
+        tbody {
+            display: flex;
+        }
+
+        th {
+            display: flex;
+
+        }
+
+        tr {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+        }
+    </style>
