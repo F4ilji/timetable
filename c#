@@ -1,0 +1,81 @@
+public class Order {
+    public int OrderNumber { get; set; }
+    public string ClientFullName { get; set; }
+    public string ClientPassportData { get; set; }
+    public string ClientAddress { get; set; }
+    public string ClientPhone { get; set; }
+    public string OrderType { get; set; }
+    public string EmployeeFullName { get; set; }
+    public double OrderCost { get; set; }
+    public DateTime OrderDate { get; set; }
+    public DateTime CompletionDate { get; set; }
+    public bool PaymentConfirmed { get; set; }
+
+    public static List<Order> Orders = new List<Order>();
+
+    public static void PrintClientInfo() {
+        foreach (var order in Orders) {
+            Console.WriteLine("Client name: " + order.ClientFullName);
+            Console.WriteLine("Client phone: " + order.ClientPhone);
+        }
+    }
+
+    public static void PrintOrdersAboveCost(double cost) {
+        foreach (var order in Orders) {
+            if (order.OrderCost > cost) {
+                Console.WriteLine("Order number: " + order.OrderNumber);
+                Console.WriteLine("Order cost: " + order.OrderCost);
+            }
+        }
+    }
+
+    public static void PrintOrdersByType(string type) {
+        foreach (var order in Orders) {
+            if (order.OrderType == type) {
+                Console.WriteLine("Order number: " + order.OrderNumber);
+            }
+        }
+    }
+
+    public static void PrintOrdersThisWeek() {
+        DateTime today = DateTime.Today;
+        int daysUntilMonday = ((int)DayOfWeek.Monday - (int)today.DayOfWeek + 7) % 7;
+        DateTime monday = today.AddDays(daysUntilMonday);
+        DateTime sunday = monday.AddDays(6);
+
+        foreach (var order in Orders) {
+            if (order.OrderDate >= monday && order.OrderDate <= sunday) {
+                Console.WriteLine("Order number: " + order.OrderNumber);
+            }
+        }
+    }
+
+    public static void PrintCompletedOrdersThisWeek() {
+        DateTime today = DateTime.Today;
+        int daysUntilMonday = ((int)DayOfWeek.Monday - (int)today.DayOfWeek + 7) % 7;
+        DateTime monday = today.AddDays(daysUntilMonday);
+        DateTime sunday = monday.AddDays(6);
+
+        foreach (var order in Orders) {
+            if (order.CompletionDate >= monday && order.CompletionDate <= sunday) {
+                Console.WriteLine("Order number: " + order.OrderNumber);
+            }
+        }
+    }
+
+    public static void PrintEmployeeByOrderNumber(int orderNumber) {
+        foreach (var order in Orders) {
+            if (order.OrderNumber == orderNumber) {
+                Console.WriteLine("Employee name: " + order.EmployeeFullName);
+            }
+        }
+    }
+
+    public static void PrintPaidOrders() {
+        foreach (var order in Orders) {
+            if (order.PaymentConfirmed) {
+                Console.WriteLine("Order number: " + order.OrderNumber);
+            }
+        }
+    }
+}
